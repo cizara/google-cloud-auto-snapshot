@@ -15,7 +15,7 @@ and much of the installation instructions from here https://github.com/jacksegal
 google-cloud-auto-snapshot.sh will:
 
 - Determine all Compute Engine Disks in the current project, regardless of
-- Take a snapshot of all disks - snapshots prefixed autogcs-{DISK_NAME-YYYY-MM-DD-sssssssss}
+- Take a snapshot of all disks with label 'backup=yes' - snapshots prefixed autogcs-{DISK_NAME-YYYY-MM-DD-sssssssss}
 - The script will then delete all associated snapshots taken by the script that are older than 60 days
 
 
@@ -23,6 +23,10 @@ google-cloud-auto-snapshot.sh will:
 
 * the gcloud SDK must be install which includes the gcloud cli [https://cloud.google.com/sdk/downloads](https://cloud.google.com/sdk/downloads)
 * the gcloud project must be set to the project that owns the disks
+* you have to label each disk you want to backup. You can do it with this command
+```
+gcloud beta compute disks add-labels web-root --labels=backup=yes
+```
 
 ## Installation
 
